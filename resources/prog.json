@@ -1,0 +1,13 @@
+{
+    "class": "DifferentialSumator",
+    "interval": 50,
+    "members": [
+        "double inputAngle 0",
+        "double autoAngle 0",
+        "bool autoRotate 0",
+        "bool autoRotateVelocity 0",
+        "readonly double resultAngle 0"
+    ],
+    "reciept1": "resultAngle = (inputAngle + autoAngle) % 360",
+    "loop1": "autoAngle = (elapsedTime * 40 / 1000) % 360"
+}

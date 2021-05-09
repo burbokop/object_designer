@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/main.qml</file>
+        <file>resources/Client1Panel.qml</file>
+        <file>resources/ConnectionInput.qml</file>
+        <file>resources/GraphicViewer.qml</file>
+        <file>resources/Arrow.qml</file>
+        <file>resources/LocalBeaconTest.qml</file>
+        <file>resources/EditPopup.qml</file>
+        <file>resources/prog.json</file>
+        <file>resources/KSlider.qml</file>
+    </qresource>
+</RCC>
