@@ -1,7 +1,7 @@
 #include "client1.h"
 #include "simplenegot.h"
 
-#include <src/utility/kmodulehandler.h>
+#include <klibcore/src/memcontrol/kmodulehandler.h>
 
 #include <QGuiApplication>
 #include <QQuickView>
@@ -40,10 +40,7 @@ int main(int argc, char **argv) {
         qDebug() << "fff" << d;
     };
 
-    while (1) {
-        tmp = negot1.proceed(tmp, timer.elapsed());
-        tmp = negot2.proceed(tmp, timer.elapsed());
-    }
+
 
 
     return app.exec();

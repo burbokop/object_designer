@@ -39,7 +39,7 @@ void KDynamicObject::compleate() {
     }
 
     if(m_className.isEmpty())
-        m_className = KType<KDynamicObject>().name().toUtf8();
+        m_className = KType<KDynamicObject>().typeName().toUtf8();
 
     QMetaObjectBuilder builder;
     builder.setClassName(m_className);

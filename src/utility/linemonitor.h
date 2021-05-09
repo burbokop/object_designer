@@ -5,22 +5,7 @@
 #include <klibcore/src/kmacro.h>
 #include <klibcore/src/graphics/kpainteditem.h>
 
-
-//TODO: move this construction anywhare
-Q_DECLARE_METATYPE(QVector<double>)
-inline QDataStream& operator<<(QDataStream& out, const QVector<double>& v) {
-    for(auto vv : v)
-        out << vv;
-    return out;
-}
-inline QDataStream& operator>>(QDataStream& in, QVector<double>& v) {
-    for(auto vv : v)
-        in >> vv;
-    return in;
-}
-inline int qVectorDoubleStreamOperatorsRegistration = qRegisterMetaTypeStreamOperators<QVector<double>>();
-//-------------------------------------
-
+#include "serialization.h"
 
 class LineMonitor : public KPaintedItem {
     Q_OBJECT

@@ -9,6 +9,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 include(klibcore/klibcore.cmake)
 
+add_definitions(-DKLIBCORE_USE_EXTENDED_META_SYSTEM)
 
 find_package(Qt5 COMPONENTS
     Core
@@ -20,7 +21,11 @@ find_package(Qt5 COMPONENTS
     REQUIRED
     )
 
+
+
 add_executable(object_designer
+    src/utility/serialization.cpp
+    src/utility/serialization.h
     src/lib/__kdynamicobject.cpp
     src/lib/dynamicobject/formulaparser.cpp
     src/lib/dynamicobject/jsonconfiguratedworker.cpp
@@ -76,8 +81,11 @@ add_executable(object_designer
     resources.qrc
     )
 
+include_directories(object_designer PRIVATE ${Qt5Core_OWN_PRIVATE_INCLUDE_DIRS})
+
 
 target_link_libraries(object_designer
+    klibcore
     Qt5::Quick
     Qt5::Multimedia
     Qt5::Widgets

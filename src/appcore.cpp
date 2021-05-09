@@ -35,6 +35,8 @@ AppCore::AppCore(QObject *parent) : QObject(parent) {
     localSyncronizer.bind(4444);
 
 
+    setAvailableClasses(kAvailableClasses());
+
     connect(&localSyncronizer, &KLocalSyncronizer::frameReady, this, [this](QByteArray array) {
         auto package = KPackage::fromBinary(array);
         if(package.type() == "propertyChanged") {

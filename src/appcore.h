@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <klibcore/src/kmacro.h>
-#include <klibcore/src/utility/kmodulehandler.h>
+#include <klibcore/src/memcontrol/kmodulehandler.h>
 #include <src/lib/kdynamicobjectlinker.h>
 #include <src/lib/mousespy.h>
 #include <src/network/klocalsyncronizer.h>

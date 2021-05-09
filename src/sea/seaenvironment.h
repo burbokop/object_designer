@@ -4,7 +4,7 @@
 #include <QObject>
 
 #include <src/sea/vessel.h>
-#include <src/utility/kabstractfactory.h>
+#include <src/memcontrol/kabstractfactory.h>
 #include <src/experimental/universalqueue/kuniversalqueue.h>
 
 #define DECLARE_REQUEST_TYPE(TYPE, NAME) \

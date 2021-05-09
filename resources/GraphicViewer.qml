@@ -85,7 +85,7 @@ Item {
                                 border.width: 1
                                 width: 92
                                 height: 18
-                                color: (senderChoosed && currentEditedConnection.sender === object.objectName && currentEditedConnection.senderProperty === modelData) ? "#0000ff" : "#ffffff"                                
+                                color: (senderChoosed && currentEditedConnection.sender === object.objectName && currentEditedConnection.senderProperty === modelData) ? "#0000ff" : "#ffffff"
                                 Text {
                                     anchors.centerIn: parent.extendedMode ? parent : undefined
                                     anchors.left: parent.extendedMode ? undefined : parent.left
@@ -94,7 +94,7 @@ Item {
                                     color: writableProperty ? "#000000" : "#ff4000"
                                 }
                                 MouseArea {
-                                    anchors.fill: parent                                    
+                                    anchors.fill: parent
                                     onClicked: {
                                         if(newConnectionMode.checked) {
                                             if(senderChoosed) {
@@ -130,11 +130,11 @@ Item {
 
         Connections {
             target: KObjectLifeTracker
-            onWatcherTriggered: (arg) => {
-                                    if(arg.type === "destroy") {
-                                        arg.object.destroy();
-                                    }
-                                }
+            function onWatcherTriggered(arg) {
+                if(arg.type === "destroy") {
+                    arg.object.destroy();
+                }
+            }
         }
 
         Timer {
@@ -147,24 +147,24 @@ Item {
 
         Connections {
             target: appCore.linker
-            onObjectAdded: (obj) => {
-                               const item = objComponent.createObject(root, { object: obj, x: Math.random() * 400, y: Math.random() * 400 });
-                               KObjectLifeTracker.registerWatcher(obj, { type: "destroy", object: item });
-                               itemsMap.insert(obj, item);
-                               updateTimer.running = true;
-                           }
+            function onObjectAdded(obj) {
+                const item = objComponent.createObject(root, { object: obj, x: Math.random() * 400, y: Math.random() * 400 });
+                KObjectLifeTracker.registerWatcher(obj, { type: "destroy", object: item });
+                itemsMap.insert(obj, item);
+                updateTimer.running = true;
+            }
 
-            onConnectionsChanged: {
+            function onConnectionsChanged() {
                 repeater.updateArrows();
             }
 
-            onActiveChanged: {
+            function onActiveChanged() {
                 repeater.updateArrows();
             }
         }
 
         ColumnLayout {
-             RowLayout {
+            RowLayout {
                 Button {
                     text: "update"
                     onClicked: {
@@ -216,11 +216,11 @@ Item {
 
             Connections {
                 target: modelData
-                onDataTransferred: {
+                function onDataTransferred() {
                     ttt.running = true;
                     arr.transmitting = true;
                 }
-                onDataBlocked: {
+                function onDataBlocked() {
                     ttt.running = true;
                     arr.blocked = true;
                 }
