@@ -57,50 +57,55 @@ Rectangle {
                 }
             }
 
-            RowLayout {
+            ColumnLayout {
                 anchors.fill: parent
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Button {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
 
-                Button {
-                    width: 60
-                    Layout.margins: 16
-                    id: but1
-                    text: "<"
-                    //background: Rectangle {
-                    //    width: 100
-                    //    anchors.fill: parent
-                    //    border.width: parent.pressed ? 2 : 1
-                    //    border.color: parent.pressed ? "4d0f53" : "#1c053a"
-                    //}
-                }
+                        Layout.margins: 16
+                        id: but1
+                        text: "<"
+                    }
 
-                Button {
-                    Layout.margins: 8
-                    width: 60
-                    height: 40
-                    id: but2
-                    text: ">"
-                    //background: Rectangle {
-                    //    anchors.fill: but2
-                    //    border.width: but2.pressed ? 2 : 1
-                    //    border.color: but2.pressed ? "4d0f53" : "#1c053a"
-                    //}
-                }
+                    Button {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
 
-                CheckBox {
-                    onCheckedChanged: {
-                        client.checkBox = checked;
+                        Layout.margins: 16
+                        width: 60
+                        height: 40
+                        id: but2
+                        text: ">"
                     }
                 }
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    CheckBox {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        onCheckedChanged: {
+                            client.checkBox = checked;
+                        }
+                    }
 
-                Slider {
-                    width: 30
-                    enabled: false
-                    value: Math.sin(client.angle2 * 0.1)
-                }
+                    Slider {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        enabled: false
+                        value: client != null && Math.sin(client.angle2 * 0.1)
+                    }
 
-                KLamp {
-                    state: client.lamp
-                    Layout.margins: 8
+                    KLamp {
+                        Layout.preferredWidth: height
+                        Layout.fillHeight: true
+                        state: client != null && client.lamp
+                        Layout.margins: 8
+                    }
                 }
             }
         }

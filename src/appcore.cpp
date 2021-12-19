@@ -19,17 +19,17 @@ AppCore::AppCore(QObject *parent) : QObject(parent) {
 
     {
         moduleHandler()->registerModules<
+                Client1,
                 AcousticAntenna
-        >("antena");
+        >("debug");
     } {
         moduleHandler()->registerModule<
                 Client1
         >("client1");
     } {
         moduleHandler()->registerModules<
-                Client1,
                 AcousticAntenna
-        >("debug");
+        >("antena");
     }
 
     localSyncronizer.bind(4444);
@@ -37,8 +37,8 @@ AppCore::AppCore(QObject *parent) : QObject(parent) {
 
     setAvailableClasses(kAvailableClasses());
 
-    connect(&localSyncronizer, &KLocalSyncronizer::frameReady, this, [this](QByteArray array) {
-        auto package = KPackage::fromBinary(array);
+    connect(&localSyncronizer, &KLocalSyncronizer::frameReady, this, [this](QByteArray array) {        
+        auto package = KPackage::fromJson(array);
         if(package.type() == "propertyChanged") {
             auto data = package.data().toMap();
             auto object = data["object"].toString();
@@ -53,7 +53,7 @@ AppCore::AppCore(QObject *parent) : QObject(parent) {
         data["object"] = objectName;
         data["property"] = property;
         data["value"] = value;
-        localSyncronizer.write(KPackage("propertyChanged", data).toBinary());
+        localSyncronizer.write(KPackage("propertyChanged", data).toJson());
         linker()->changeProperty(objectName, property, value);
     });
 
@@ -79,8 +79,10 @@ QString AppCore::substitute(QString string) {
 }
 
 QObject *AppCore::newInstance(QString typeName, QString property, QObject *parent) {
-    auto instance = kInstantinate(typeName);
+    auto instance = kNewInstance(typeName, parent);
+    //auto instance = kInstantinate(typeName);
     if(instance && parent) {
+        qDebug() << "add:" << instance << "to" << parent << "as" << property;
         qDebug() << parent->setProperty(property.toStdString().c_str(), QVariant::fromValue<QObject*>(instance));
     }
     return instance;

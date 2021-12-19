@@ -77,6 +77,8 @@ add_executable(object_designer
     src/utility/hardwareviewermodel.h
     src/utility/linemonitor.h
     src/utility/rppainter.h
+    src/testobject.cpp
+    src/testobject.h
 
     resources.qrc
     )

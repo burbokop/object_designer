@@ -94,9 +94,13 @@ Item {
                                     color: writableProperty ? "#000000" : "#ff4000"
                                 }
                                 MouseArea {
+                                    id: newConnectionMouseArea
                                     anchors.fill: parent
-                                    onClicked: {
-                                        if(newConnectionMode.checked) {
+                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                    onPressedButtonsChanged: {
+                                        console.log("newConnectionMouseArea.pressedButtons:", newConnectionMouseArea.pressedButtons)
+
+                                        if(newConnectionMouseArea.pressedButtons & Qt.RightButton) {
                                             if(senderChoosed) {
                                                 currentEditedConnection.reciever = object.objectName;
                                                 currentEditedConnection.recieverProperty = modelData;
@@ -112,7 +116,7 @@ Item {
                                                 currentEditedConnection.senderProperty = modelData;
                                                 senderChoosed = true;
                                             }
-                                        } else {
+                                        } else if(newConnectionMouseArea.pressedButtons & Qt.LeftButton) {
                                             parent.extendedMode = !parent.extendedMode;
                                         }
                                     }
@@ -185,10 +189,6 @@ Item {
             TextField {
                 id: newInstanceNameField
                 text: "prop1"
-            }
-            CheckBox {
-                text: "c+"
-                id: newConnectionMode
             }
         }
     }

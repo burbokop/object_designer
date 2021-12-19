@@ -9,6 +9,8 @@
 #include <src/utility/kobjectlistener.h>
 #include <src/utility/kvaluesaver.h>
 
+
+
 class KConnection : public QObject {
     Q_OBJECT
     K_QML_TYPE(KConnection)

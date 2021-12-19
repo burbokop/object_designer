@@ -35,19 +35,16 @@ KDynamicObjectLinker::KDynamicObjectLinker(QObject *parent) : QObject(parent) {
         QFile output(KAdditional::absolutePath(KType<KDynamicObjectLinker>()));
         output.open(QIODevice::WriteOnly);
         QVariantList list;
-        for(auto c : m_connections) {
+        for(const auto& c : m_connections) {
             list.push_back(c->serialize());
         }
         output.write(KPackage(KType<KDynamicObjectLinker>(), list).toBinary());
     });
 }
 
-KObjectListener *KDynamicObjectLinker::listener() const
-{
+KObjectListener *KDynamicObjectLinker::listener() const {
     return m_listener;
 }
-
-
 
 void KDynamicObjectLinker::__addObject(QObject *object, QString name) {
     if(!object)

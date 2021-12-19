@@ -26,22 +26,5 @@ int main(int argc, char **argv) {
     engine.load(QUrl("qrc:/resources/main.qml"));
     //engine.load(QUrl("qrc:/resources/LocalBeaconTest.qml"));
 
-    SimpleNegot negot1;
-    SimpleNegot negot2;
-
-    QElapsedTimer timer;
-    std::vector<uint8_t> tmp;
-
-
-
-    negot1.writePackage({ { 12, 23, }, { 1, 2 } });
-
-    negot2.f = [](auto d){
-        qDebug() << "fff" << d;
-    };
-
-
-
-
     return app.exec();
 }

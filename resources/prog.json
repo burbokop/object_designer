@@ -9,5 +9,5 @@
         "readonly double resultAngle 0"
     ],
     "reciept1": "resultAngle = (inputAngle + autoAngle) % 360",
-    "loop1": "autoAngle = (elapsedTime * 40 / 1000) % 360"
+    "loop1": "autoAngle = (elapsedTime * 10 / 1000) % 360"
 }
